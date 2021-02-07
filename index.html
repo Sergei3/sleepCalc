@@ -1,0 +1,195 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
+      xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="utf-8">
+    <title>Title</title>
+</head>
+<style>
+    body {
+        background: #CCFFFF;
+    }
+</style>
+<body>
+
+<div id="hour" align = "center">
+    <h2 style="text-align: center; font-size:150%;">
+        Время сна
+    </h2>
+    <span style="font-size: 150%;">
+        Я хочу лечь в
+    </span>
+    </b>
+    <select id="hourFallAsleep">
+        <option>(часов)</option>
+        <option value = 0> 0 </option>
+        <option value = 1> 1 </option>
+        <option value = 2> 2 </option>
+        <option value = 3> 3 </option>
+        <option value = 4> 4 </option>
+        <option value = 5> 5 </option>
+        <option value = 6> 6 </option>
+        <option value = 7> 7 </option>
+        <option value = 8> 8 </option>
+        <option value = 0> 9 </option>
+        <option value = 10> 10 </option>
+        <option value = 11> 11 </option>
+        <option value = 12> 12 </option>
+        <option value = 13> 13 </option>
+        <option value = 14> 14 </option>
+        <option value = 15> 15 </option>
+        <option value = 16> 16 </option>
+        <option value = 17> 17 </option>
+        <option value = 18> 18 </option>
+        <option value = 19> 19 </option>
+        <option value = 20> 20 </option>
+        <option value = 21> 21 </option>
+        <option value = 22> 22 </option>
+        <option value = 23> 23 </option>
+    </select>
+    <select id="minuteFallAsleep">
+        <option>(минут)</option>
+        <option> 00 </option>
+        <option> 05 </option>
+        <option> 10 </option>
+        <option> 15 </option>
+        <option> 20 </option>
+        <option> 25 </option>
+        <option> 30 </option>
+        <option> 35 </option>
+        <option> 40 </option>
+        <option> 45 </option>
+        <option> 50 </option>
+        <option> 55 </option>
+    </select>
+</div>
+</br>
+<div align = "center">
+<input type="button" id="calculateFallAsleep" value="Рассчитать" />
+</div>
+</br>
+<div align="center">
+    <span style="font-size: 150%;">
+        Просыпайся в
+    </span>
+    </br>
+    <span id="resultFallAsleep1" style="font-size: 150%;color:#FF3300"></span>
+    <span id="resultFallAsleep2" style="font-size: 150%;color:#FF9900"></span>
+    <span id="resultFallAsleep3" style="font-size: 150%;color:#FFCC66" ></span>
+    <span id="resultFallAsleep4" style="font-size: 150%;color:#FFFF66" ></span>
+    <span id="resultFallAsleep5" style="font-size: 150%;color:#99FF66" ></span>
+    <span id="resultFallAsleep6" style="font-size: 150%;color:#66FF66" ></span>
+    <span id="resultFallAsleep7" style="font-size: 150%;color:#00FF00" ></span>
+    </br>
+</div>
+<hr width="500" noshade="">
+</br>
+<div align="center">
+    <span style="font-size: 150%;">
+        Если я пойду спать сейчас <input type="button" id="calculateNow" value="ZZZ"/> , то
+    </span>
+</div>
+</br>
+<div align="center">
+    <span style="font-size: 150%;">
+        чтобы не нарушить фазу сна, я должен проснуться в такое время:
+    </span>
+    </br>
+    </br>
+    <span id="resultSleepNow1" style="font-size: 150%;color:#FF3300"></span>
+    <span id="resultSleepNow2" style="font-size: 150%;color:#FF9900"></span>
+    <span id="resultSleepNow3" style="font-size: 150%;color:#FFCC66" ></span>
+    <span id="resultSleepNow4" style="font-size: 150%;color:#FFFF66" ></span>
+    <span id="resultSleepNow5" style="font-size: 150%;color:#99FF66" ></span>
+    <span id="resultSleepNow6" style="font-size: 150%;color:#66FF66" ></span>
+    <span id="resultSleepNow7" style="font-size: 150%;color:#00FF00" ></span>
+</div>
+</br>
+<hr width="500" noshade="">
+</br>
+<div align="center">
+    <span style="font-size: 150%;">
+        <input type="button" id="reset" value="Посчитать снова"/>
+    </span>
+</div>
+
+
+<script>
+    document.getElementById("calculateFallAsleep").onclick = function() {
+        let hourFallAsleep = document.getElementById("hourFallAsleep").value
+        let minuteFallAsleep = document.getElementById("minuteFallAsleep").value
+        if (hourFallAsleep !== "(часов)" && minuteFallAsleep !== "(минут)") {
+            const hourFallAsleepInt = parseInt(hourFallAsleep, 10)
+            const minuteFallAsleepInt = parseInt(minuteFallAsleep, 10)
+            let newMin1 = (minuteFallAsleepInt + 80) % 60;
+            let newHours1 = (hourFallAsleepInt + Math.floor((minuteFallAsleepInt + 80)/60)) % 24;
+            let result1 =`${newHours1}:${newMin1 < 10 ? "0" + newMin1 : newMin1}`
+            document.getElementById('resultFallAsleep1').innerText = result1;
+            let newMin2 = (minuteFallAsleepInt + 180) % 60;
+            let newHours2 = (hourFallAsleepInt + Math.floor((minuteFallAsleepInt + 180)/60)) % 24;
+            let result2 =`${newHours2}:${newMin2 < 10 ? "0" + newMin2 : newMin2}`
+            document.getElementById('resultFallAsleep2').innerText = result2;
+            let newMin3 = (minuteFallAsleepInt + 270) % 60;
+            let newHours3 = (hourFallAsleepInt + Math.floor((minuteFallAsleepInt + 270)/60)) % 24;
+            let result3 =`${newHours3}:${newMin3 < 10 ? "0" + newMin3 : newMin3}`
+            document.getElementById('resultFallAsleep3').innerText = result3;
+            let newMin4 = (minuteFallAsleepInt + 360) % 60;
+            let newHours4 = (hourFallAsleepInt + Math.floor((minuteFallAsleepInt + 360)/60)) % 24;
+            let result4 =`${newHours4}:${newMin4 < 10 ? "0" + newMin4 : newMin4}`
+            document.getElementById('resultFallAsleep4').innerText = result4;
+            let newMin5 = (minuteFallAsleepInt + 450) % 60;
+            let newHours5 = (hourFallAsleepInt + Math.floor((minuteFallAsleepInt + 450)/60)) % 24;
+            let result5 =`${newHours5}:${newMin5 < 10 ? "0" + newMin5 : newMin5}`
+            document.getElementById('resultFallAsleep5').innerText = result5;
+            let newMin6 = (minuteFallAsleepInt + 540) % 60;
+            let newHours6 = (hourFallAsleepInt + Math.floor((minuteFallAsleepInt + 540)/60)) % 24;
+            let result6 =`${newHours6}:${newMin6 < 10 ? "0" + newMin6 : newMin6}`
+            document.getElementById('resultFallAsleep6').innerText = result6;
+            let newMin7 = (minuteFallAsleepInt + 630) % 60;
+            let newHours7 = (hourFallAsleepInt + Math.floor((minuteFallAsleepInt + 630)/60)) % 24;
+            let result7 =`${newHours7}:${newMin7 < 10 ? "0" + newMin7 : newMin7}`
+            document.getElementById('resultFallAsleep7').innerText = result7;
+        } else {
+        alert("Выберите время пробуждения")
+        }
+    }
+    document.getElementById("calculateNow").onclick = function() {
+        const minuteNow = new Date().getMinutes()
+        const hourNow = new Date().getHours()
+        let newMinNow1 = (minuteNow + 90) % 60;
+        let newHourNow1 = (hourNow + Math.floor((minuteNow + 90)/60)) % 24;
+        let result1 =`${newHourNow1}:${newMinNow1 < 10 ? "0" + newMinNow1 : newMinNow1}`
+        document.getElementById('resultSleepNow1').innerText = result1;
+        let newMinNow2 = (minuteNow + 180) % 60;
+        let newHourNow2 = (hourNow + Math.floor((minuteNow + 180)/60)) % 24;
+        let result2 =`${newHourNow2}:${newMinNow2 < 10 ? "0" + newMinNow2 : newMinNow2}`
+        document.getElementById('resultSleepNow2').innerText = result2;
+        let newMinNow3 = (minuteNow + 270) % 60;
+        let newHourNow3 = (hourNow + Math.floor((minuteNow + 270)/60)) % 24;
+        let result3 =`${newHourNow3}:${newMinNow3 < 10 ? "0" + newMinNow3 : newMinNow3}`
+        document.getElementById('resultSleepNow3').innerText = result3;
+        let newMinNow4 = (minuteNow + 360) % 60;
+        let newHourNow4 = (hourNow + Math.floor((minuteNow + 360)/60)) % 24;
+        let result4 =`${newHourNow4}:${newMinNow4 < 10 ? "0" + newMinNow4 : newMinNow4}`
+        document.getElementById('resultSleepNow4').innerText = result4;
+        let newMinNow5 = (minuteNow + 450) % 60;
+        let newHourNow5 = (hourNow + Math.floor((minuteNow + 450)/60)) % 24;
+        let result5 =`${newHourNow5}:${newMinNow5 < 10 ? "0" + newMinNow5 : newMinNow5}`
+        document.getElementById('resultSleepNow5').innerText = result5;
+        let newMinNow6 = (minuteNow + 540) % 60;
+        let newHourNow6 = (hourNow + Math.floor((minuteNow + 540)/60)) % 24;
+        let result6 =`${newHourNow6}:${newMinNow6 < 10 ? "0" + newMinNow6 : newMinNow6}`
+        document.getElementById('resultSleepNow6').innerText = result6;
+        let newMinNow7 = (minuteNow + 630) % 60;
+        let newHourNow7 = (hourNow + Math.floor((minuteNow + 630)/60)) % 24;
+        let result7 =`${newHourNow7}:${newMinNow7 < 10 ? "0" + newMinNow7 : newMinNow7}`
+        document.getElementById('resultSleepNow7').innerText = result7;
+    }
+    document.getElementById("reset").onclick = function() {
+        location.reload(); // перезагружаем страницу
+    }
+
+</script>
+</body>
+</html>
