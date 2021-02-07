@@ -1,6 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
-      xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -21,7 +20,7 @@
         Я хочу лечь в
     </span>
     </b>
-    <select id="hourFallAsleep">
+    <label for="hourFallAsleep"></label><select id="hourFallAsleep">
         <option>(часов)</option>
         <option value = 0> 0 </option>
         <option> 1 </option>
@@ -66,7 +65,7 @@
 </div>
 </br>
 <div align = "center">
-<input type="button" id="calculateFallAsleep" value="Рассчитать" />
+    <input type="button" id="calculateFallAsleep" value="Рассчитать" />
 </div>
 </br>
 <div align="center">
@@ -107,7 +106,6 @@
 </div>
 </br>
 <hr width="500" noshade="">
-</br>
 <div align="center">
     <span style="font-size: 150%;">
         <input type="button" id="reset" value="Посчитать снова"/>
@@ -116,7 +114,7 @@
 
 
 <script>
-    document.getElementById("calculateFallAsleep").onclick = function() {
+    document.getElementById("calculateFallAsleep").onclick = function() { // Расчет времени от выбора пользователя
         let hourFallAsleep = document.getElementById("hourFallAsleep").value
         let minuteFallAsleep = document.getElementById("minuteFallAsleep").value
         if (hourFallAsleep !== "(часов)" && minuteFallAsleep !== "(минут)") {
@@ -124,70 +122,56 @@
             const minuteFallAsleepInt = parseInt(minuteFallAsleep, 10)
             let newMin1 = (minuteFallAsleepInt + 80) % 60;
             let newHours1 = (hourFallAsleepInt + Math.floor((minuteFallAsleepInt + 80)/60)) % 24;
-            let result1 =`${newHours1}:${newMin1 < 10 ? "0" + newMin1 : newMin1}`
-            document.getElementById('resultFallAsleep1').innerText = result1;
+            document.getElementById('resultFallAsleep1').innerText = `${newHours1}:${newMin1 < 10 ? "0" + newMin1 : newMin1}`;
             let newMin2 = (minuteFallAsleepInt + 180) % 60;
             let newHours2 = (hourFallAsleepInt + Math.floor((minuteFallAsleepInt + 180)/60)) % 24;
-            let result2 =`${newHours2}:${newMin2 < 10 ? "0" + newMin2 : newMin2}`
-            document.getElementById('resultFallAsleep2').innerText = result2;
+            document.getElementById('resultFallAsleep2').innerText = `${newHours2}:${newMin2 < 10 ? "0" + newMin2 : newMin2}`;
             let newMin3 = (minuteFallAsleepInt + 270) % 60;
             let newHours3 = (hourFallAsleepInt + Math.floor((minuteFallAsleepInt + 270)/60)) % 24;
-            let result3 =`${newHours3}:${newMin3 < 10 ? "0" + newMin3 : newMin3}`
-            document.getElementById('resultFallAsleep3').innerText = result3;
+            document.getElementById('resultFallAsleep3').innerText = `${newHours3}:${newMin3 < 10 ? "0" + newMin3 : newMin3}`;
             let newMin4 = (minuteFallAsleepInt + 360) % 60;
             let newHours4 = (hourFallAsleepInt + Math.floor((minuteFallAsleepInt + 360)/60)) % 24;
-            let result4 =`${newHours4}:${newMin4 < 10 ? "0" + newMin4 : newMin4}`
-            document.getElementById('resultFallAsleep4').innerText = result4;
+            document.getElementById('resultFallAsleep4').innerText = `${newHours4}:${newMin4 < 10 ? "0" + newMin4 : newMin4}`;
             let newMin5 = (minuteFallAsleepInt + 450) % 60;
             let newHours5 = (hourFallAsleepInt + Math.floor((minuteFallAsleepInt + 450)/60)) % 24;
-            let result5 =`${newHours5}:${newMin5 < 10 ? "0" + newMin5 : newMin5}`
-            document.getElementById('resultFallAsleep5').innerText = result5;
+            document.getElementById('resultFallAsleep5').innerText = `${newHours5}:${newMin5 < 10 ? "0" + newMin5 : newMin5}`;
             let newMin6 = (minuteFallAsleepInt + 540) % 60;
             let newHours6 = (hourFallAsleepInt + Math.floor((minuteFallAsleepInt + 540)/60)) % 24;
-            let result6 =`${newHours6}:${newMin6 < 10 ? "0" + newMin6 : newMin6}`
-            document.getElementById('resultFallAsleep6').innerText = result6;
+            document.getElementById('resultFallAsleep6').innerText = `${newHours6}:${newMin6 < 10 ? "0" + newMin6 : newMin6}`;
             let newMin7 = (minuteFallAsleepInt + 630) % 60;
             let newHours7 = (hourFallAsleepInt + Math.floor((minuteFallAsleepInt + 630)/60)) % 24;
-            let result7 =`${newHours7}:${newMin7 < 10 ? "0" + newMin7 : newMin7}`
-            document.getElementById('resultFallAsleep7').innerText = result7;
+            document.getElementById('resultFallAsleep7').innerText = `${newHours7}:${newMin7 < 10 ? "0" + newMin7 : newMin7}`;
         } else {
-        alert("Выберите время пробуждения")
+            alert("Выберите время пробуждения")
         }
     }
-    document.getElementById("calculateNow").onclick = function() {
+    document.getElementById("calculateNow").onclick = function() { // Расчет времени от времени на устройстве
         const minuteNow = new Date().getMinutes()
         const hourNow = new Date().getHours()
         let newMinNow1 = (minuteNow + 90) % 60;
         let newHourNow1 = (hourNow + Math.floor((minuteNow + 90)/60)) % 24;
-        let result1 =`${newHourNow1}:${newMinNow1 < 10 ? "0" + newMinNow1 : newMinNow1}`
-        document.getElementById('resultSleepNow1').innerText = result1;
+    document.getElementById('resultSleepNow1').innerText = `${newHourNow1}:${newMinNow1 < 10 ? "0" + newMinNow1 : newMinNow1}`;
         let newMinNow2 = (minuteNow + 180) % 60;
         let newHourNow2 = (hourNow + Math.floor((minuteNow + 180)/60)) % 24;
-        let result2 =`${newHourNow2}:${newMinNow2 < 10 ? "0" + newMinNow2 : newMinNow2}`
-        document.getElementById('resultSleepNow2').innerText = result2;
+        document.getElementById('resultSleepNow2').innerText = `${newHourNow2}:${newMinNow2 < 10 ? "0" + newMinNow2 : newMinNow2}`;
         let newMinNow3 = (minuteNow + 270) % 60;
         let newHourNow3 = (hourNow + Math.floor((minuteNow + 270)/60)) % 24;
-        let result3 =`${newHourNow3}:${newMinNow3 < 10 ? "0" + newMinNow3 : newMinNow3}`
-        document.getElementById('resultSleepNow3').innerText = result3;
+        document.getElementById('resultSleepNow3').innerText = `${newHourNow3}:${newMinNow3 < 10 ? "0" + newMinNow3 : newMinNow3}`;
         let newMinNow4 = (minuteNow + 360) % 60;
         let newHourNow4 = (hourNow + Math.floor((minuteNow + 360)/60)) % 24;
-        let result4 =`${newHourNow4}:${newMinNow4 < 10 ? "0" + newMinNow4 : newMinNow4}`
-        document.getElementById('resultSleepNow4').innerText = result4;
+        document.getElementById('resultSleepNow4').innerText = `${newHourNow4}:${newMinNow4 < 10 ? "0" + newMinNow4 : newMinNow4}`;
         let newMinNow5 = (minuteNow + 450) % 60;
         let newHourNow5 = (hourNow + Math.floor((minuteNow + 450)/60)) % 24;
-        let result5 =`${newHourNow5}:${newMinNow5 < 10 ? "0" + newMinNow5 : newMinNow5}`
-        document.getElementById('resultSleepNow5').innerText = result5;
+        document.getElementById('resultSleepNow5').innerText = `${newHourNow5}:${newMinNow5 < 10 ? "0" + newMinNow5 : newMinNow5}`;
         let newMinNow6 = (minuteNow + 540) % 60;
         let newHourNow6 = (hourNow + Math.floor((minuteNow + 540)/60)) % 24;
-        let result6 =`${newHourNow6}:${newMinNow6 < 10 ? "0" + newMinNow6 : newMinNow6}`
-        document.getElementById('resultSleepNow6').innerText = result6;
+        document.getElementById('resultSleepNow6').innerText = `${newHourNow6}:${newMinNow6 < 10 ? "0" + newMinNow6 : newMinNow6}`;
         let newMinNow7 = (minuteNow + 630) % 60;
         let newHourNow7 = (hourNow + Math.floor((minuteNow + 630)/60)) % 24;
-        let result7 =`${newHourNow7}:${newMinNow7 < 10 ? "0" + newMinNow7 : newMinNow7}`
-        document.getElementById('resultSleepNow7').innerText = result7;
+        document.getElementById('resultSleepNow7').innerText = `${newHourNow7}:${newMinNow7 < 10 ? "0" + newMinNow7 : newMinNow7}`;
     }
     document.getElementById("reset").onclick = function() {
-        location.reload(); // перезагружаем страницу
+        location.reload();
     }
 
 </script>
